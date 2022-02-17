@@ -1,0 +1,2 @@
+reportlab==3.5.34
+streamlit==1.5.0
