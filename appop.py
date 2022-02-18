@@ -182,7 +182,7 @@ if imp:
 
 
     cnv = canvas.Canvas("Relatório diário {}_{}.pdf".format(ger,dat_for))
-    cnv = canvas.Canvas("/home/i/Downloads/Relatorios/relatorio_diario/Relatório diário {}_{}.pdf".format(ger, dat_obj))
+   # cnv = canvas.Canvas("/home/i/Downloads/Relatorios/relatorio_diario/Relatório diário {}_{}.pdf".format(ger, dat_obj))
 
 
     cnv.drawString(50,800, 'Relatório diário {}'.format(dat_for))
