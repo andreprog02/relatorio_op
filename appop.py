@@ -3,14 +3,10 @@ from datetime import date
 from streamlit import caching
 import base64
 
-import boto3
+
 import uuid
 import re
 
-import boto3
-import base64
-import uuid
-import re
 
 
 from reportlab.lib import colors
