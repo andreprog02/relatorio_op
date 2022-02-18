@@ -415,5 +415,5 @@ def download_aws_object(bucket, key):
     return dl_link
 
 
-st.markdown(download_aws_object(bucket, key), unsafe_allow_html=True)
+
 
