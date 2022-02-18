@@ -4,16 +4,14 @@ from streamlit import caching
 import base64
 
 
-import uuid
-import re
+with open("yourpdf.pdf", "rb") as file:
+    imp=st.download_button(
+    label="click me to download pdf",
+    data=file,
+    file_name="dowloaded.pdf",
+    mime="application/octet-stream"
+)
 
-
-
-from reportlab.lib import colors
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
-
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import A4
 
 cnv = canvas.Canvas("Meu_pdf.pdf")
 cnv.save()
