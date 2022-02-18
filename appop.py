@@ -367,50 +367,15 @@ if imp:
     cnv.save()
     
    
-def download_aws_object(bucket, key):
-    """
-    Download an object from AWS
-    Example key: my/key/some_file.txt
-    """
-    s3 = boto3.resource('s3')
-    obj = s3.Object(bucket, key)
-    file_name = key.split('/')[-1] # e.g. some_file.txt
-    file_type = file_name.split('.')[-1] # e.g. txt
-    b64 = base64.b64encode(obj.get()['Body'].read()).decode()
 
-    button_uuid = str(uuid.uuid4()).replace("-", "")
-    button_id = re.sub("\d+", "", button_uuid)
+with open("Relatório diário {}_{}.pdf", "rb") as file:
+    imp=st.download_button(
+    label="click me to download pdf",
+    data=file,
+    file_name="dowloaded.pdf",
+    mime="application/octet-stream"
+)
 
-    custom_css = f""" 
-        <style>
-            #{button_id} {{
-                background-color: rgb(255, 255, 255);
-                color: rgb(38, 39, 48);
-                padding: 0.25em 0.38em;
-                position: relative;
-                text-decoration: none;
-                border-radius: 4px;
-                border-width: 1px;
-                border-style: solid;
-                border-color: rgb(230, 234, 241);
-                border-image: initial;
-            }} 
-            #{button_id}:hover {{
-                border-color: rgb(246, 51, 102);
-                color: rgb(246, 51, 102);
-            }}
-            #{button_id}:active {{
-                box-shadow: none;
-                background-color: rgb(246, 51, 102);
-                color: white;
-                }}
-        </style> """
-
-    dl_link = (
-        custom_css
-        + f'<a download="{cnv}" id="{imp}" href="data:file/{file_type};base64,{b64}">Download {file_name}</a><br></br>'
-    )
-    return dl_link
 
 
 
