@@ -7,7 +7,7 @@ import base64
 
 
 #cnv = canvas.Canvas("Meu_pdf.pdf")
-cnv.save()
+#cnv.save()
 
 
 
