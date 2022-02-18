@@ -4,13 +4,6 @@ from streamlit import caching
 import base64
 
 
-with open("yourpdf.pdf", "rb") as file:
-    imp=st.download_button(
-    label="click me to download pdf",
-    data=file,
-    file_name="dowloaded.pdf",
-    mime="application/octet-stream"
-)
 
 
 cnv = canvas.Canvas("Meu_pdf.pdf")
