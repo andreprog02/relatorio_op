@@ -340,9 +340,7 @@ if imp:
     cnv.drawString(180, 100, 'ºC')
     cnv.drawString(205, 100, '{}'.format(bob1))
     cnv.drawString(50, 85, 'Temperatura bobina 2')
-    cnv.drawString(180, 85, 'ºC')def create_download_link(val, filename):
-    b64 = base64.b64encode(val)  # val looks like b'...'
-    return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
+    cnv.drawString(180, 85, 'ºC')
 
 
     cnv.drawString(205, 85, '{}'.format(bob2))
