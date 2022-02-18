@@ -3,6 +3,15 @@ from datetime import date
 from streamlit import caching
 import base64
 
+import boto3
+import uuid
+import re
+
+import boto3
+import base64
+import uuid
+import re
+
 
 from reportlab.lib import colors
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
@@ -364,6 +373,51 @@ if imp:
     cnv.save()
     
    
-if imp:
-    base64_pdf = base64.b64encode(cnv.save()).decode('utf-8')
+def download_aws_object(bucket, key):
+    """
+    Download an object from AWS
+    Example key: my/key/some_file.txt
+    """
+    s3 = boto3.resource('s3')
+    obj = s3.Object(bucket, key)
+    file_name = key.split('/')[-1] # e.g. some_file.txt
+    file_type = file_name.split('.')[-1] # e.g. txt
+    b64 = base64.b64encode(obj.get()['Body'].read()).decode()
+
+    button_uuid = str(uuid.uuid4()).replace("-", "")
+    button_id = re.sub("\d+", "", button_uuid)
+
+    custom_css = f""" 
+        <style>
+            #{button_id} {{
+                background-color: rgb(255, 255, 255);
+                color: rgb(38, 39, 48);
+                padding: 0.25em 0.38em;
+                position: relative;
+                text-decoration: none;
+                border-radius: 4px;
+                border-width: 1px;
+                border-style: solid;
+                border-color: rgb(230, 234, 241);
+                border-image: initial;
+            }} 
+            #{button_id}:hover {{
+                border-color: rgb(246, 51, 102);
+                color: rgb(246, 51, 102);
+            }}
+            #{button_id}:active {{
+                box-shadow: none;
+                background-color: rgb(246, 51, 102);
+                color: white;
+                }}
+        </style> """
+
+    dl_link = (
+        custom_css
+        + f'<a download="{cnv}" id="{imp}" href="data:file/{file_type};base64,{b64}">Download {file_name}</a><br></br>'
+    )
+    return dl_link
+
+
+st.markdown(download_aws_object(bucket, key), unsafe_allow_html=True)
 
