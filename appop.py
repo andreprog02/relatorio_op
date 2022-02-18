@@ -357,5 +357,11 @@ if imp:
     cnv.drawString(465, 70, '{}'.format(exp))
   #  cnv.drawString(50, 20, 'Corrente de média: {} A'.format(com))
   #  cnv.drawString(50, 5, 'Energia exportada: {} MWh'.format(exp))
+    
+    
     cnv.save()
+    
+    def create_download_link(val, filename):
+    b64 = base64.b64encode(val)  # val looks like b'...'
+    return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
 
