@@ -16,6 +16,7 @@ cnv.save()
 
 
 
+
 st.header('Relatório diário')
 
 
@@ -218,7 +219,9 @@ if imp:
     cnv.drawString(310,615,'{}'.format(bat))
     cnv.drawString(50, 600, 'Temperatura da mistura')
     cnv.drawString(220, 600, 'ºC')
-    cnv.drawString(310, 600,'{}'.format(tmist))
+    cnv.drawString(310def create_download_link(val, filename):
+    b64 = base64.b64encode(val)  # val looks like b'...'
+    return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>', 600,'{}'.format(tmist))
     cnv.drawString(50, 585, 'Pressão de carga')
     cnv.drawString(220,585,'Bar')
     cnv.drawString(310,585,'{}'.format(pcar))
@@ -320,7 +323,9 @@ if imp:
     cnv.drawString(50, 245, 'Teor de oxigênio')
     cnv.drawString(220, 245, '%')
     cnv.drawString(310, 245, '{}'.format(o2))
-  #  cnv.drawString(50, 170, 'Teor de H2s: {} ppm'.format(h2s))
+  #  cnv.drawString(50def create_download_link(val, filename):
+    b64 = base64.b64encode(val)  # val looks like b'...'
+    return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>', 170, 'Teor de H2s: {} ppm'.format(h2s))
   #  cnv.drawString(50, 155, 'Teor de oxigênio: {} %'.format(o2))
     cnv.drawString(50, 220, 'Dados do chiller')
     cnv.drawString(50, 200, 'Temperatura primeiro estágio')
@@ -365,6 +370,6 @@ if imp:
     
    
 if imp:
-    base64_pdf = base64.b64encode(cnv.read()).decode('utf-8')
+    base64_pdf = base64.b64encode(cnv.save()).decode('utf-8')
 pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">' 
 st.markdown(pdf_display, unsafe_allow_html=True)
