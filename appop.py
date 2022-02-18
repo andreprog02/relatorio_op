@@ -340,7 +340,11 @@ if imp:
     cnv.drawString(180, 100, 'ºC')
     cnv.drawString(205, 100, '{}'.format(bob1))
     cnv.drawString(50, 85, 'Temperatura bobina 2')
-    cnv.drawString(180, 85, 'ºC')
+    cnv.drawString(180, 85, 'ºC')def create_download_link(val, filename):
+    b64 = base64.b64encode(val)  # val looks like b'...'
+    return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
+
+
     cnv.drawString(205, 85, '{}'.format(bob2))
     cnv.drawString(50, 70, 'Temperatura bobina 3')
     cnv.drawString(180, 70, 'ºC')
@@ -364,4 +368,26 @@ if imp:
     def create_download_link(val, filename):
     b64 = base64.b64encode(val)  # val looks like b'...'
     return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
+
+if imp:
+    cnv = reportlab()
+    cnv.add_page()
+    cnv.set_xy(10,10)
+    cnv.set_font('Arial', 'B', 16)
+    temp=[]
+    for i in range(df.shape[0]):
+        for j in range(df.shape[1]):
+            temp.append(df.iloc[[i],[j]].values)
+
+    for i in range(df.shape[0]):
+        cnv.ln()
+        for j in range(df.shape[1]):
+            cnv.cell(-120)
+            cnv.ln()    
+            cnv.cell(i, j, str(temp[i]),align='C')
+            cnv.ln()
+
+    html = create_download_link(cnv.output(dest="S").encode("latin-1"), "test")
+
+    st.markdown(html, unsafe_allow_html=True)
 
