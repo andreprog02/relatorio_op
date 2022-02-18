@@ -1,7 +1,7 @@
 import streamlit as st
 from datetime import date
 from streamlit import caching
-
+import base64
 
 
 from reportlab.lib import colors
@@ -365,29 +365,8 @@ if imp:
     
     cnv.save()
     
-    def create_download_link(val, filename):
-    b64 = base64.b64encode(val)  # val looks like b'...'
-    return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
-
+   
 if imp:
-    cnv = reportlab()
-    cnv.add_page()
-    cnv.set_xy(10,10)
-    cnv.set_font('Arial', 'B', 16)
-    temp=[]
-    for i in range(df.shape[0]):
-        for j in range(df.shape[1]):
-            temp.append(df.iloc[[i],[j]].values)
-
-    for i in range(df.shape[0]):
-        cnv.ln()
-        for j in range(df.shape[1]):
-            cnv.cell(-120)
-            cnv.ln()    
-            cnv.cell(i, j, str(temp[i]),align='C')
-            cnv.ln()
-
-    html = create_download_link(cnv.output(dest="S").encode("latin-1"), "test")
-
-    st.markdown(html, unsafe_allow_html=True)
-
+    base64_pdf = base64.b64encode(pdf_file.read()).decode('utf-8')
+pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">' 
+st.markdown(pdf_display, unsafe_allow_html=True)
