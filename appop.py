@@ -323,10 +323,7 @@ if imp:
     cnv.drawString(50, 245, 'Teor de oxigênio')
     cnv.drawString(220, 245, '%')
     cnv.drawString(310, 245, '{}'.format(o2))
-  #  cnv.drawString(50def create_download_link(val, filename):
-    b64 = base64.b64encode(val)  # val looks like b'...'
-    return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>', 170, 'Teor de H2s: {} ppm'.format(h2s))
-  #  cnv.drawString(50, 155, 'Teor de oxigênio: {} %'.format(o2))
+  
     cnv.drawString(50, 220, 'Dados do chiller')
     cnv.drawString(50, 200, 'Temperatura primeiro estágio')
     cnv.drawString(220, 200, 'ºC')
