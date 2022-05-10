@@ -4,10 +4,7 @@ from streamlit import caching
 import base64
 
 
-st.download_button(label="Export_Report",
-                    data=PDFbyte,
-                    file_name="test.pdf",
-                    mime='application/octet-stream')
+
 
 
 
