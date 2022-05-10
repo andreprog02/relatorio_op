@@ -8,10 +8,7 @@ from PIL import Image
 import numpy as np
 import comtypes.client
 from pathlib import Path#################### Streamlit ####################
-def load_image(img):
- im = Image.open(img)
- image = np.array(im)
- return imagest.image(load_image(os.getcwd()+”\Title.png”))
+
 st.write(“##”)st.subheader(“Choose Options”)config_select_options = st.selectbox(“Select option:”, [“Input files manually”, “Input path”], 0)if config_select_options == “Input files manually”:
  uploaded_file_pdf = st.file_uploader(“Upload PDF Files”,type=[‘pdf’], accept_multiple_files=True)
  # uploaded_file_doc = st.file_uploader(“Upload doc/docx Files”,type=[‘docx’,’doc’], accept_multiple_files=True)
