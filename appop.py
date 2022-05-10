@@ -3,8 +3,6 @@ from datetime import date
 from streamlit import caching
 import base64
 
-with open("dummy.pdf", "rb") as pdf_file:
-    PDFbyte = pdf_file.read()
 
 st.download_button(label="Export_Report",
                     data=PDFbyte,
