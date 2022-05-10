@@ -3,6 +3,19 @@ from datetime import date
 from streamlit import caching
 import base64
 
+with open("dummy.pdf", "rb") as pdf_file:
+    PDFbyte = pdf_file.read()
+
+st.download_button(label="Export_Report",
+                    data=PDFbyte,
+                    file_name="test.pdf",
+                    mime='application/octet-stream')
+
+
+
+
+
+
 
 
 
@@ -361,12 +374,7 @@ if imp:
     
    
 
-with open("Relatório diário {}_{}.pdf", "rb") as file:
-    imp=st.download_button(
-    label="click me to download pdf",
-    data=file,
-    file_name="dowloaded.pdf",
-    mime="application/octet-stream"
+
 )
 
 
