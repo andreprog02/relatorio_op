@@ -9,7 +9,7 @@ import numpy as np
 import comtypes.client
 from pathlib import Path#################### Streamlit ####################
 
-st.write(“oi”)st.subheader(“Choose Options”)config_select_options = st.selectbox(“Select option:”, [“Input files manually”, “Input path”], 0)if config_select_options == “Input files manually”:
+st.subheader(“Choose Options”)config_select_options = st.selectbox(“Select option:”, [“Input files manually”, “Input path”], 0)if config_select_options == “Input files manually”:
  uploaded_file_pdf = st.file_uploader(“Upload PDF Files”,type=[‘pdf’], accept_multiple_files=True)
  # uploaded_file_doc = st.file_uploader(“Upload doc/docx Files”,type=[‘docx’,’doc’], accept_multiple_files=True)
 else:
