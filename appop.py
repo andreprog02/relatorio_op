@@ -170,6 +170,7 @@ def limpa_tela():
         kv_entry.delete(0, END)
         amp_entry.delete(0, END)
         exp_entry.delete(0, END)
+        noil_entry.delete(0,END)
 
 
 
@@ -420,46 +421,55 @@ label48.grid(row=34, column=7, padx=5, pady=5, sticky=NSEW)
 chiller4_entry = Entry(root, width = 10)
 chiller4_entry.grid(row=34, column=8)
 
+#nível de óleo
+
+noillabel= Label(root, text='Nível de óleo' )
+noillabel.grid(row=8, column=3, padx=5, pady=5, sticky=NSEW)
+noil_entry = Entry(root, width = 10)
+noil_entry.grid(row=8, column=4)
+
+
+
 #bobina do trafo
 
 label49 = Label(root, text='Temperatura do Trafo')
-label49.grid(row=9, column=3, padx=5, pady=5, sticky=NSEW)
+label49.grid(row=11, column=3, padx=5, pady=5, sticky=NSEW)
 
 
 label50 = Label(root, text='Bobina 1')
-label50.grid(row=10, column=3, padx=5, pady=5, sticky=NSEW)
+label50.grid(row=12, column=3, padx=5, pady=5, sticky=NSEW)
 bobina1_entry = Entry(root, width = 10)
-bobina1_entry.grid(row=10, column=4)
+bobina1_entry.grid(row=12, column=4)
 
 label51 = Label(root, text='Bobina 2')
-label51.grid(row=10, column=6, padx=5, pady=5, sticky=NSEW)
+label51.grid(row=12, column=6, padx=5, pady=5, sticky=NSEW)
 bobina2_entry = Entry(root, width = 10)
-bobina2_entry.grid(row=10, column=7)
+bobina2_entry.grid(row=12, column=7)
 
 label52 = Label(root, text='Bobina 3')
-label52.grid(row=10, column=9, padx=5, pady=5, sticky=NSEW)
+label52.grid(row=12, column=9, padx=5, pady=5, sticky=NSEW)
 bobina3_entry = Entry(root, width = 10)
-bobina3_entry.grid(row=10, column=10)
+bobina3_entry.grid(row=12, column=10)
 
 label53 = Label(root, text='Dados cabine de média tensão')
-label53.grid(row=13, column=3, padx=5, pady=5, sticky=NSEW)
+label53.grid(row=15, column=3, padx=5, pady=5, sticky=NSEW)
 
 
 
 label54 = Label(root, text='Tensão')
-label54.grid(row=14, column=3, padx=5, pady=5, sticky=NSEW)
+label54.grid(row=16, column=3, padx=5, pady=5, sticky=NSEW)
 kv_entry = Entry(root, width = 10)
-kv_entry.grid(row=14, column=4)
+kv_entry.grid(row=16, column=4)
 
 label55 = Label(root, text='Corrente')
-label55.grid(row=14, column=6, padx=5, pady=5, sticky=NSEW)
+label55.grid(row=16, column=6, padx=5, pady=5, sticky=NSEW)
 amp_entry = Entry(root, width = 10)
-amp_entry.grid(row=14, column=7)
+amp_entry.grid(row=16, column=7)
 
 label56 = Label(root, text='Energia exportada')
-label56.grid(row=14, column=9, padx=5, pady=5, sticky=NSEW)
+label56.grid(row=16, column=9, padx=5, pady=5, sticky=NSEW)
 exp_entry = Entry(root, width = 10)
-exp_entry.grid(row=14, column=10)
+exp_entry.grid(row=16, column=10)
 
 
 
@@ -485,7 +495,7 @@ def geraRelatorio():
         combo2 = combo2_entry.get()
         calendario = calendario_entry
         
-        c = canvas.Canvas('Relatório diário' ' ' + combo + ' ' + calendario)
+        c = canvas.Canvas('Relatório diário' ' ' + combo + ' ' + calendario + '.pdf')
 
         hora = hora_entry.get()
         gerador = combo_entry.get()
@@ -506,6 +516,7 @@ def geraRelatorio():
         poil = poil_entry.get()
         twat = twat_entry.get()
         pwat = pwat_entry.get()
+        noil = noil_entry.get()
 
         #cilindros
 
@@ -543,6 +554,11 @@ def geraRelatorio():
         chiller2 = chiller2_entry.get()
         chiller3 = chiller3_entry.get()
         chiller4 = chiller4_entry.get()
+
+
+        # controle nível de óleo
+
+        noil = noil_entry.get()
 
         #temperatura bobina do trafo
 
@@ -820,6 +836,10 @@ def geraRelatorio():
         c.drawString(400, 60, 'MWh' )
         c.drawString(440, 60, exp)
 
+        c.drawString(330, 410, 'Nível de óleo')
+        c.drawString(400, 410, 'cm' )
+        c.drawString(425, 410, noil)
+
 
 
 
@@ -842,6 +862,7 @@ def geraRelatorio():
 mybutton = Button(root, text='Gerar Pdf!', command=geraRelatorio)
 mybutton.grid(row=4, column=5)
 
+
 mybutton2 = Button(root, text='Limpar tela!', command=limpa_tela)
 mybutton2.grid(row=6, column=5)
 
@@ -853,4 +874,3 @@ mybutton2.grid(row=6, column=5)
 
 
 root.mainloop()
-
