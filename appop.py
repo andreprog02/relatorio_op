@@ -836,9 +836,9 @@ def geraRelatorio():
         c.drawString(400, 60, 'MWh' )
         c.drawString(440, 60, exp)
 
-        c.drawString(330, 410, 'Nível de óleo')
-        c.drawString(400, 410, 'cm' )
-        c.drawString(425, 410, noil)
+        c.drawString(460, 410, 'Nível de óleo')
+        c.drawString(540, 410, 'cm' )
+        c.drawString(572, 410, noil)
 
 
 
